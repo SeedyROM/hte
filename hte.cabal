@@ -1,0 +1,75 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.31.2.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: 8bfb94db1260b5b66a094e3e759f1fecc1ac7783ca7b291bb9f97632597c1e1f
+
+name:           hte
+version:        0.0.1.0
+description:    Please see the README on GitHub at <https://github.com/githubuser/hte#readme>
+homepage:       https://github.com/SeedyROM/hte#readme
+bug-reports:    https://github.com/SeedyROM/hte/issues
+author:         Zack Kollar
+maintainer:     me@seedyrom.io
+copyright:      2020 Zack Kollar
+license:        BSD3
+license-file:   LICENSE
+build-type:     Simple
+extra-source-files:
+    README.md
+    ChangeLog.md
+
+source-repository head
+  type: git
+  location: https://github.com/SeedyROM/hte
+
+library
+  exposed-modules:
+      CommandLine
+      Editor
+  other-modules:
+      Paths_hte
+  hs-source-dirs:
+      src
+  build-depends:
+      Cabal
+    , base >=4.7 && <5
+    , cmdargs
+    , terminal
+    , text
+  default-language: Haskell2010
+
+executable hte
+  main-is: Main.hs
+  other-modules:
+      Paths_hte
+  hs-source-dirs:
+      app
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      Cabal
+    , base >=4.7 && <5
+    , cmdargs
+    , hte
+    , terminal
+    , text
+  default-language: Haskell2010
+
+test-suite hte-test
+  type: exitcode-stdio-1.0
+  main-is: Spec.hs
+  other-modules:
+      Paths_hte
+  hs-source-dirs:
+      test
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      Cabal
+    , base >=4.7 && <5
+    , cmdargs
+    , hte
+    , terminal
+    , text
+  default-language: Haskell2010
