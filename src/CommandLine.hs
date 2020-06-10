@@ -22,12 +22,16 @@ data Arguments =
     }
   deriving (Show, Data, Typeable, Eq)
 
+projectName :: String
+projectName = "hte"
+
 getVersion :: IO String
 getVersion = do
-  packageDescription <- readGenericPackageDescription silent "hte.cabal" -- Read from the cabal file
+  packageDescription <-
+    readGenericPackageDescription silent $ projectName ++ ".cabal" -- Read from the cabal file
   let version =
         intercalate "." $
-        map show (versionNumbers $ packageVersion packageDescription)
+        map show . versionNumbers $ packageVersion packageDescription
   return version
 
 arguments :: String -> Mode (CmdArgs Arguments)
