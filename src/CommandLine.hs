@@ -22,13 +22,14 @@ data Arguments =
     }
   deriving (Show, Data, Typeable, Eq)
 
-projectName :: String
-projectName = "hte"
+-- TODO: Figure out a way to get the pacakge name dynamically
+packageName' :: String
+packageName' = "hte"
 
 getVersion :: IO String
 getVersion = do
   packageDescription <-
-    readGenericPackageDescription silent $ projectName ++ ".cabal" -- Read from the cabal file
+    readGenericPackageDescription silent $ packageName' ++ ".cabal" -- Read from the cabal file
   let version =
         intercalate "." $
         map show . versionNumbers $ packageVersion packageDescription

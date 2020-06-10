@@ -2,15 +2,17 @@
 
 module Editor where
 
+import           Control.Monad
 import           Data.Text
 import           System.Terminal
 
-term :: IO ()
-term =
+handleInput :: IO ()
+handleInput =
   withTerminal $
   runTerminalT
-    (do putTextLn "Hello there, please press a button!"
-        flush
-        ev <- awaitEvent
+    (do ev <- awaitEvent
         putStringLn $ "Event was " ++ show ev
         flush)
+
+term :: IO ()
+term = forever $ handleInput
